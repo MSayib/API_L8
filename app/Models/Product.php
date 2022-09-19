@@ -9,7 +9,7 @@ use Illuminate\Support\Str;
 class Product extends Model
 {
     use HasFactory;
-    
+
     // Guarded fillablenya semua yg ada di table, kecuali yg didalam array.
     // $guarded kebalikan $fillable
     protected $guarded = [];
@@ -18,7 +18,7 @@ class Product extends Model
     // Penerapan Slug #2 - via Model secara Otomatis akan terbuat
     public static function booted(){
         static::creating(function (Product $product){
-            $product->slug = strtolower(Str::slug($product->name . '-' . time()));
+            $product->slug = strtolower(Str::slug($product->name . '-' . Str::random(5)));
         });
     }
 
